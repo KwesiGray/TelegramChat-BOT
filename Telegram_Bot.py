@@ -3,7 +3,7 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
 
-TOKEN: Final = '717mat1122307:zAFv0APwm232afsuUghH7TfUkcanzPgJpuloops'
+TOKEN: Final = 'YOUR BOT TOKEN'
 BOT_USERNAME : Final = '@CTSL_Bot'
 
 
