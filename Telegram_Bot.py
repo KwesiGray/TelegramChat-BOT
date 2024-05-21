@@ -37,11 +37,18 @@ vectorizer = CountVectorizer() # Create an instance of the CountVectorizer class
 X_train = vectorizer.fit_transform(sentences) # Convert the sentences into numerical data using the fit_transform method
 
 # Train a Naive Bayes classifier
-clf = MultinomialNB()
-clf.fit(X_train, responses)
+clf = MultinomialNB() # Create an instance of the MultinomialNB class
+clf.fit(X_train, responses) # Train the classifier using the fit method with the input data and output data
 
 # Now you can predict responses to new sentences
 def handle_respon(text: str) -> str: # Define a function that takes a string as input and returns a string as output
     X_test = vectorizer.transform([text]) # Convert the input text into numerical data using the transform method
-    response = clf.predict(X_test)
-    return response[0] 
+    response = clf.predict(X_test) # Predict the response using the predict method with the numerical data as input
+    return response[0]     # Return the predicted response as output
+
+
+
+async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE): # Define a function that takes an update and context as input and returns a response
+    message_type: str = update.message.chat.type # Get the type of the chat from the update
+    text: str = update.message.text # Get the text message from the update 
+    response: str = ""  # Initialize response
