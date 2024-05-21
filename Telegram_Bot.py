@@ -52,3 +52,5 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE): # 
     message_type: str = update.message.chat.type # Get the type of the chat from the update
     text: str = update.message.text # Get the text message from the update 
     response: str = ""  # Initialize response
+    
+    
