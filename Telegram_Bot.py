@@ -75,3 +75,12 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE): # 
     
     
     
+async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    print(f"Update{update} caused this error {context.error}")
+
+
+
+if __name__ == "__main__":
+    print ("Starting ChatBot.....")
+    # Create the Application and pass it your bot's token.
+    app = Application.builder().token(TOKEN).build()
