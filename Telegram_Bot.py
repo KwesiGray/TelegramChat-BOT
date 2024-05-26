@@ -84,3 +84,15 @@ if __name__ == "__main__":
     print ("Starting ChatBot.....")
     # Create the Application and pass it your bot's token.
     app = Application.builder().token(TOKEN).build()
+    
+    
+    app.add_handler(CommandHandler("start", start_command))
+    app.add_handler(CommandHandler("help", help_command))
+    app.add_handler(CommandHandler("content", content_command))
+    app.add_handler(CommandHandler("faculties", faculties_command))
+    app.add_handler(CommandHandler("courses", courses_command))
+    app.add_handler(CommandHandler("eligibility", eligibility_command))
+    app.add_handler(CommandHandler("contact", contact_command))
+    app.add_handler(CommandHandler("website", website_command))
+    app.add_handler(CommandHandler("halls", halls_command))
+    
