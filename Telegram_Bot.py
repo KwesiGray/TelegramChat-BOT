@@ -80,7 +80,7 @@ async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": #
     print ("Starting ChatBot.....")
     # Create the Application and pass it your bot's token.
     app = Application.builder().token(TOKEN).build()
