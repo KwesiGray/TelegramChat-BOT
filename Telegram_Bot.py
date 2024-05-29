@@ -88,11 +88,20 @@ if __name__ == "__main__": #
     
     app.add_handler(CommandHandler("start", start_command))
     app.add_handler(CommandHandler("help", help_command))
-    app.add_handler(CommandHandler("content", content_command))
-    app.add_handler(CommandHandler("faculties", faculties_command))
-    app.add_handler(CommandHandler("courses", courses_command))
-    app.add_handler(CommandHandler("eligibility", eligibility_command))
-    app.add_handler(CommandHandler("contact", contact_command))
     app.add_handler(CommandHandler("website", website_command))
-    app.add_handler(CommandHandler("halls", halls_command))
     
+    
+    
+     #messages
+    app.add_handler(MessageHandler(filters.TEXT, handle_message))
+
+
+
+    #ERRORS
+    app.add_error_handler(error)
+
+
+
+    #Polls the bot
+    print("polling..")
+    app.run_polling(poll_interval =2)
