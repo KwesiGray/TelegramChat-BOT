@@ -137,11 +137,11 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 
 # Your training data: a list of sentences and a list of responses.
-#sentences = ["hello", "how are you", "i am also doing good", "what's your name", "i need some help", "Thank You", "Breslin"]
-#responses = ["Hi There!!. Tap the /help Command For Help.", "I am doing great. How are you doing yourself?", "That's very good to hear. Tap the /help Command for help", "You can call me Breslin Your Bot Assistant. For Help?? Tap /help.", "I am here...Tap the /help command for me to help!", "Anytime!.", "Hello There!...Here for INFO? Tap /help."]
+sentences = ["hello", "how are you", "i am also doing good", "what's your name", "i need some help", "Thank You", "Breslin"]
+responses = ["Hi There!!. Tap the /help Command For Help.", "I am doing great. How are you doing yourself?", "That's very good to hear. Tap the /help Command for help", "You can call me Breslin Your Bot Assistant. For Help?? Tap /help.", "I am here...Tap the /help command for me to help!", "Anytime!.", "Hello There!...Here for INFO? Tap /help."]
 
-sentences = ["What halls are available", "What courses are available", "What are the faculties", "What are the eligibility criteria", "What is the contact information", "What is the website link"]
-responses = ["K.T Hall & Chambers Of Mines Hall (CMH) & Gold Refinery Hall (GRH)", "(Computer Science & Engineering) & (Mechanical Engineering) & (Mining Engineering)& (Environmental & Saftey Engineering)", "FOE & FMMT & SPET & FGES", "Agg: 12 - Agg: 08 - Agg: 06", "Hot line: +233 3121 97734"]
+#sentences = ["What halls are available", "What courses are available", "What are the faculties", "What are the eligibility criteria", "What is the contact information", "What is the website link"]
+#responses = ["K.T Hall & Chambers Of Mines Hall (CMH) & Gold Refinery Hall (GRH)", "(Computer Science & Engineering) & (Mechanical Engineering) & (Mining Engineering)& (Environmental & Saftey Engineering)", "FOE & FMMT & SPET & FGES", "Agg: 12 - Agg: 08 - Agg: 06", "Hot line: +233 3121 97734"]
 
 # Vectorize your training data
 vectorizer = CountVectorizer()
