@@ -107,7 +107,7 @@ async def halls_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 #RESPONSES
 #def handle_response(text: str)->str:
-    processed: str = text.lower()
+   # processed: str = text.lower()
 
     if "hello" in processed:
         return "hi there how may i help you"
@@ -165,20 +165,20 @@ def handle_respon(text: str) -> str:
 
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    message_type: str = update.message.chat.type
-    text: str = update.message.text
+    message_type: str = update.message.chat.type # Get the type of the chat from the update 
+    text: str = update.message.text # Get the text message from the update
     response: str = ""  # Initialize response
 
-    print(f'User ({update.message.chat.id}) in {message_type}: "{text}"')
+    print(f'User: ({update.message.chat.id}) in {message_type}: "{text}"')
 
-     #Check if text is None or an empty string
-    if not text:
-        print("Received a message without text")
-        return
+     
+    if not text: # Check if the text is None or an empty string
+        print("Received a message without text") # Print a message indicating that a message without text was received
+        return # Return None
 
 
-    if message_type == "group":
-        if BOT_USERNAME in text:
+    if message_type == "group": # checks if the message is from a group
+        if BOT_USERNAME in text: # checks if the bot username is in the message
             new_text : str = text.replace(BOT_USERNAME, "").strip()
             response: str = handle_respon(new_text)
         else:
@@ -196,7 +196,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    print(f"Update{update} caused this error {context.error}")
+    print(f"Update: {update} caused this error {context.error}")
 
 
 

@@ -4,8 +4,8 @@ from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters
 
 
-TOKEN: Final = 'YOUR BOT TOKEN GOES HERE'
-BOT_USERNAME : Final = '@CTSL_Bot' # Your BOT USERNAME & should start with the @ symbol
+TOKEN: Final = '7447252101:AAGooCzgQN38B0E18HrEkKrtdOcuMIZYrmA'
+BOT_USERNAME : Final = '@CTSL_Tadi_BOT' # Your BOT USERNAME & should start with the @ symbol
 
 
 #Commands the user can intereact with on telegram
@@ -53,12 +53,12 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE): # 
     text: str = update.message.text  # Get the text message from the update 
     response: str = ""   # Initialize response
     
-    print(f'User ({update.message.chat.id}) in {message_type}: "{text}"') 
+    print(f'User: ({update.message.chat.id}) in {message_type}: "{text}"') # Print the user ID, chat type, and text message
     
      #Check if text is None or an empty string
-    if not text:
-        print("Received a message without text")
-        return
+    if not text: # Check if the text is None or an empty string
+        print("Received a message without text") # Print a message indicating that a message without text was received
+        return # Return None
 
     
     if message_type == "group":
@@ -74,14 +74,20 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE): # 
     await update.message.reply_text(response) 
     
     
+  
+  
+  
+  
+  
+  
     
 async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    print(f"Update{update} caused this error {context.error}")
+    print(f"Update: {update} caused this error {context.error}")
 
 
 
-if __name__ == "__main__": #
-    print ("Starting ChatBot.....")
+if __name__ == "__main__": # Check if the script is being run directly
+    print ("Starting ChatBot.....") # Print a message indicating that the chatbot is starting
     # Create the Application and pass it your bot's token.
     app = Application.builder().token(TOKEN).build()
     
