@@ -30,6 +30,8 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 /website-> School Website link
 
+/faculty_buttons-> List of Faculties in UMaT
+
     """
     )
 
@@ -40,9 +42,10 @@ async def faculties_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """These Are The Faculties Available :
     -> FOE
     -> FMMT
-    -> SPET
+    -> SPeTs
     -> FGES
     -> FCAMS
+    -> FIMS
     """
     )
 
@@ -86,6 +89,8 @@ async def contact_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
  """
     )
 
+
+
 async def website_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
     """ Visit The Official Website of The School Here : https://umat.edu.gh/
@@ -106,16 +111,20 @@ async def halls_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     
 
-async def question_buttons(update: Update, context: CallbackContext):
-    #markup = InlineKeyboardMarkup(row_width=2)
+async def faculty_buttons(update: Update, context: CallbackContext):
+    #markup = InlineKeyboardMarkup(row_width=3)
     
     fges = InlineKeyboardButton(text="FGES", callback_data="Iron Faculty")
     foe = InlineKeyboardButton(text="FOE", callback_data="FOE Faculty")
     fcams = InlineKeyboardButton(text="FCAMS", callback_data="FCAMS")
-    iron = InlineKeyboardButton(text="Iron", callback_data="Iron")
+    fmmt = InlineKeyboardButton(text="FMMT", callback_data="FMMT Faculty")
+    spet = InlineKeyboardButton(text="SPeTs", callback_data="SPET Faculty")
+    fims = InlineKeyboardButton(text="FIMS", callback_data="FIMS Faculty")
 
     # Define your keyboard layout
-    keyboard = [[fges, foe], [fcams, iron]]
+    #keyboard = [[fges, foe], [fcams, iron]]
+    
+    keyboard = [[fges], [foe], [fcams], [fmmt], [spet], [fims]]
 
     markup = InlineKeyboardMarkup(keyboard)
 
@@ -249,7 +258,7 @@ if __name__ == "__main__":
     app.add_handler(CommandHandler("contact", contact_command))
     app.add_handler(CommandHandler("website", website_command))
     app.add_handler(CommandHandler("halls", halls_command))
-    app.add_handler(CommandHandler("question_buttons", question_buttons))
+    app.add_handler(CommandHandler("faculty_buttons", faculty_buttons))
     
     
 
