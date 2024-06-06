@@ -1,6 +1,6 @@
 from typing import Final
-from telegram import Update
-from telegram.ext import Application, CommandHandler, ContextTypes, filters, MessageHandler
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram.ext import Application, CommandHandler, ContextTypes, filters, MessageHandler, CallbackContext
 
 
 TOKEN: Final = '7170598307:AAGXai5Vl8qVlCef1HtvbSeJsP7lL1xL8aY'
@@ -8,7 +8,7 @@ BOT_USERNAME : Final = '@UMAT_TARKWA_bot'
 
 #Commands
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Hello!!'Breslin' here Welcome To The UMaT Admissions Assistant Bot. Type the /help Command For any Assistance regarding UMaT Admissions.")
+    await update.message.reply_text("Hello!! 'Breslin' here Welcome To The UMaT Admissions Assistant Bot. Type the /help Command For any Assistance regarding UMaT Admissions.")
 
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -20,7 +20,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 /faculties-> Faculties in UMaT(Tarkwa)
 
-/courses-> Courses in UMaT(Tarkwa)
+/programs-> Courses in UMaT(Tarkwa)
 
 /halls-> Halls of Residence(Tarkwa)
 
@@ -42,13 +42,14 @@ async def faculties_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     -> FMMT
     -> SPET
     -> FGES
+    -> FCAMS
     """
     )
 
 
-async def courses_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def programs_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
-    """These Are The Courses Available :
+    """These Are The Programs Available :
 
     -> Computer Science & Engineering
     -> Mechanical Engineering
@@ -105,6 +106,23 @@ async def halls_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     
 
+async def question_buttons(update: Update, context: CallbackContext):
+    #markup = InlineKeyboardMarkup(row_width=2)
+    
+    fges = InlineKeyboardButton(text="FGES", callback_data="Iron Faculty")
+    foe = InlineKeyboardButton(text="FOE", callback_data="FOE Faculty")
+    fcams = InlineKeyboardButton(text="FCAMS", callback_data="FCAMS")
+    iron = InlineKeyboardButton(text="Iron", callback_data="Iron")
+
+    # Define your keyboard layout
+    keyboard = [[fges, foe], [fcams, iron]]
+
+    markup = InlineKeyboardMarkup(keyboard)
+
+    await update.message.reply_text("What faculty?", reply_markup=markup)
+    
+    
+    
 # async def question_buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
 #     await update.message.reply_text(
 #     """Here are some questions you can ask me:
@@ -226,11 +244,14 @@ if __name__ == "__main__":
     app.add_handler(CommandHandler("help", help_command))
 
     app.add_handler(CommandHandler("faculties", faculties_command))
-    app.add_handler(CommandHandler("courses", courses_command))
+    app.add_handler(CommandHandler("programs", programs_command))
     app.add_handler(CommandHandler("eligibility", eligibility_command))
     app.add_handler(CommandHandler("contact", contact_command))
     app.add_handler(CommandHandler("website", website_command))
     app.add_handler(CommandHandler("halls", halls_command))
+    app.add_handler(CommandHandler("question_buttons", question_buttons))
+    
+    
 
 
 
