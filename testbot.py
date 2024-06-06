@@ -8,13 +8,13 @@ BOT_USERNAME : Final = '@UMAT_TARKWA_bot'
 
 #Commands
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Hello!! 'Breslin' here Welcome To The UMaT Admissions Assistant Bot. Type the /help Command For any Assistance regarding UMaT Admissions.")
+    await update.message.reply_text("Hello!!'Breslin' here Welcome To The UMaT Admissions Assistant Bot. Type the /help Command For any Assistance regarding UMaT Admissions.")
 
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
     """
-/start->
+/start-> Start Using the Telegram Bot
 
 /help-> Here's Your Help Command
 
@@ -103,28 +103,41 @@ async def halls_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 -Gold Refinery Hall (GRH)
 """
     )
+    
+
+# async def question_buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
+#     await update.message.reply_text(
+#     """Here are some questions you can ask me:
+#     -> What halls are available
+#     -> What courses are available
+#     -> What are the faculties
+#     -> What are the eligibility criteria
+#     -> What is the contact information
+#     -> What is the website link
+#     """)
+    
 
 
-#RESPONSES
-#def handle_response(text: str)->str:
-   # processed: str = text.lower()
+# #RESPONSES
+# #def handle_response(text: str)->str:
+#    # processed: str = text.lower()
 
-    if "hello" in processed:
-        return "hi there how may i help you"
+#     if "hello" in processed:
+#         return "hi there how may i help you"
 
-    if "how are you" in processed:
-        return "I am Doing Good Please. You?"
+#     if "how are you" in processed:
+#         return "I am Doing Good Please. You?"
 
-    if "i am also doing good" in processed or "i am also fine" in processed:
-        return "That's Very Good To Hear. How May I Help You?"
+#     if "i am also doing good" in processed or "i am also fine" in processed:
+#         return "That's Very Good To Hear. How May I Help You?"
 
-    if "what's your name" in processed or "name" in processed:
-        return "Your Can Call Me Breslin Your Bot Assistant"
+#     if "what's your name" in processed or "name" in processed:
+#         return "Your Can Call Me Breslin Your Bot Assistant"
 
-    if "i need some help" in processed or "help" in processed:
-        return "I am here...Type the /help command for me to help!"
+#     if "i need some help" in processed or "help" in processed:
+#         return "I am here...Type the /help command for me to help!"
 
-    return "Please come agian ...I am not PROGRAMMED for That"
+#     return "Please come agian ...I am not PROGRAMMED for That"
 
 
 
