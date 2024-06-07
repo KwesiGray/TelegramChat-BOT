@@ -1,7 +1,7 @@
 from typing import Final
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import Application, CommandHandler, ContextTypes, filters, MessageHandler, CallbackContext
-
+from httpx import ConnectTimeout
 
 TOKEN: Final = '7170598307:AAGXai5Vl8qVlCef1HtvbSeJsP7lL1xL8aY'
 BOT_USERNAME : Final = '@UMAT_TARKWA_bot'
@@ -114,7 +114,7 @@ async def halls_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def faculty_buttons(update: Update, context: CallbackContext):
     #markup = InlineKeyboardMarkup(row_width=3)
     
-    fges = InlineKeyboardButton(text="FGES", callback_data="Iron Faculty")
+    fges = InlineKeyboardButton(text="FGES", callback_data="FGES Faculty")
     foe = InlineKeyboardButton(text="FOE", callback_data="FOE Faculty")
     fcams = InlineKeyboardButton(text="FCAMS", callback_data="FCAMS")
     fmmt = InlineKeyboardButton(text="FMMT", callback_data="FMMT Faculty")
@@ -128,7 +128,7 @@ async def faculty_buttons(update: Update, context: CallbackContext):
 
     markup = InlineKeyboardMarkup(keyboard)
 
-    await update.message.reply_text("What faculty?", reply_markup=markup)
+    await update.message.reply_text("Faculties Present", reply_markup=markup)
     
     
     
@@ -277,8 +277,9 @@ if __name__ == "__main__":
 
 
     #Polls the bot
-    print("polling..")
-    app.run_polling(poll_interval =2)
+    print("Polling.....")
+    app.run_polling(poll_interval =3)
+    
 
 
 
