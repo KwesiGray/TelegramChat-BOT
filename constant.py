@@ -17,6 +17,8 @@ help_command = """
 
 /website-> School Website link
 
+Or Tap the /in_depth Command for more info to aid in your admission INFO.
+
     """
 
 
