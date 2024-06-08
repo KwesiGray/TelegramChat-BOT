@@ -1,147 +1,89 @@
 from typing import Final
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, Update
-from telegram.ext import Application, CommandHandler, ContextTypes, filters, MessageHandler, CallbackContext
+import constant as const
+from telegram import Bot, Update, InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram.ext import Application, CommandHandler, ContextTypes, filters, MessageHandler, CallbackContext, InlineQueryHandler, Updater, CallbackQueryHandler
 from httpx import ConnectTimeout
 
 TOKEN: Final = '7170598307:AAGXai5Vl8qVlCef1HtvbSeJsP7lL1xL8aY'
+bot_token = TOKEN
+bot = Bot(token=bot_token)
 BOT_USERNAME : Final = '@UMAT_TARKWA_bot'
 
 #Commands
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Hello!! 'Breslin' here Welcome To The UMaT Admissions Assistant Bot. Type the /help Command For any Assistance regarding UMaT Admissions.")
+    await update.message.reply_text("Hello!! 'Breslin' here Welcome To The UMaT Admissions Assistant Bot. Type the /help Command For any Assistance regarding UMaT Admissions.OR Tap the /in_depth Command for more info")
 
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text(
-    """
-/start-> Start Using the Telegram Bot
-
-/help-> Here's Your Help Command
-
-/faculties-> Faculties in UMaT(Tarkwa)
-
-/programs-> Courses in UMaT(Tarkwa)
-
-/halls-> Halls of Residence(Tarkwa)
-
-/eligibility-> Aggregates Allowed in UMaT
-
-/contact-> Contact INFO of UMaT
-
-/website-> School Website link
-
-/faculty_buttons-> List of Faculties in UMaT
-
-    """
-    )
-
+    await update.message.reply_text(const.help_command)
 
 
 async def faculties_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text(
-    """These Are The Faculties Available :
-    -> FOE
-    -> FMMT
-    -> SPeTs
-    -> FGES
-    -> FCAMS
-    -> FIMS
-    """
-    )
+    await update.message.reply_text(const.faculties_command)
 
 
 async def programs_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text(
-    """These Are The Programs Available :
-
-    -> Computer Science & Engineering
-    -> Mechanical Engineering
-    -> Mining Engineering
-    -> Environmental & Saftey Engineering
-
-    """
-    )
+    await update.message.reply_text(const.programs_command)
 
 
 async def eligibility_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text(
-    """These Are The Eligigble Aggregates Available To Enroll Here:
-
-    -> Agg: 15
-    -> Agg: 12
-    -> Agg: 08
-    -> Agg: 06
-    """
-    )
+    await update.message.reply_text(const.eligibility_command)
 
 
 async def contact_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text(
-""" Contact Details:
-
-- Hot line: +233 3121 97734
-
-- The Registrar : registrar@umat.edu.gh
-
-- The WebMaster : webmaster@umat.edu.gh
-
-- Postal: Box 237, Tarkwa. W/R
- """
-    )
+    await update.message.reply_text(const.contact_command)
 
 
 
 async def website_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text(
-    """ Visit The Official Website of The School Here : https://umat.edu.gh/
-    """
-    )
+    await update.message.reply_text(const.website_command)
 
 
 
 async def halls_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text(
-"""These Are The Halls of Residence Available:
--K.T Hall
+    await update.message.reply_text(const.halls_command)
 
--Chambers Of Mines Hall (CMH)
 
--Gold Refinery Hall (GRH)
-"""
-    )
+async def in_depth_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(const.in_depth_command)
     
-
 async def faculty_buttons(update: Update, context: CallbackContext):
-    #markup = InlineKeyboardMarkup(row_width=3)
-    
-    fges = InlineKeyboardButton(text="FGES", callback_data="FGES Faculty")
-    foe = InlineKeyboardButton(text="FOE", callback_data="FOE Faculty")
-    fcams = InlineKeyboardButton(text="FCAMS", callback_data="FCAMS")
-    fmmt = InlineKeyboardButton(text="FMMT", callback_data="FMMT Faculty")
-    spet = InlineKeyboardButton(text="SPeTs", callback_data="SPET Faculty")
-    fims = InlineKeyboardButton(text="FIMS", callback_data="FIMS Faculty")
+    """Presents a list of faculty buttons for user selection."""
 
-    # Define your keyboard layout
-    #keyboard = [[fges, foe], [fcams, iron]]
+    keyboard =[
+        [InlineKeyboardButton(text="FMMT", callback_data="FMMT Faculty")],
+        [InlineKeyboardButton(text="FOE", callback_data="FOE Faculty")],
+        [InlineKeyboardButton(text="FCAMS", callback_data="FCAMS Faculty")],
+        [InlineKeyboardButton(text="FGES", callback_data="FGES Faculty")],
+        [InlineKeyboardButton(text="SPeTs", callback_data="SPET Faculty")],
+        [InlineKeyboardButton(text="FIMS", callback_data="FIMS Faculty")]
+    ]
     
-    keyboard = [[fges], [foe], [fcams], [fmmt], [spet], [fims]]
+    keyboard1 = [
+        [InlineKeyboardButton(text="FMMT", callback_data="FMMT Faculty")],
+        [InlineKeyboardButton(text="FOE", callback_data="FOE Faculty")],
+        [InlineKeyboardButton(text="FCAMS", callback_data="FCAMS Faculty")],
+        [InlineKeyboardButton(text="FGES", callback_data="FGES Faculty")],
+        [InlineKeyboardButton(text="SPeTs", callback_data="SPET Faculty")],
+        [InlineKeyboardButton(text="FIMS", callback_data="FIMS Faculty")]
+    ]
 
     markup = InlineKeyboardMarkup(keyboard)
 
-    await update.message.reply_text("Faculties Present", reply_markup=markup)
+    await update.message.reply_text("Select a Faculty:", reply_markup=markup)
     
     
     
-# async def question_buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
-#     await update.message.reply_text(
-#     """Here are some questions you can ask me:
-#     -> What halls are available
-#     -> What courses are available
-#     -> What are the faculties
-#     -> What are the eligibility criteria
-#     -> What is the contact information
-#     -> What is the website link
-#     """)
+    
+# write a function that will handle the callback data
+async def handle_faculty_buttons(update: Update, context: CallbackContext):
+    """Handle the callback data from the faculty buttons."""
+    query = update.callback_query
+    faculty = query.data
+
+    await query.answer(f"You selected: {faculty}")
+
+    await query.message.reply_text(f"You selected: {faculty}")
     
 
 
@@ -237,13 +179,12 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
     print(f"Update: {update} caused this error {context.error}")
+    
 
 
 
 
-
-
-if __name__ == "__main__":
+if __name__ == "__main__": # Check if the script is being run directly
     print ("Starting ChatBot.....")
     # Create the Application and pass it your bot's token.
     app = Application.builder().token(TOKEN).build()
@@ -258,8 +199,10 @@ if __name__ == "__main__":
     app.add_handler(CommandHandler("contact", contact_command))
     app.add_handler(CommandHandler("website", website_command))
     app.add_handler(CommandHandler("halls", halls_command))
-    app.add_handler(CommandHandler("faculty_buttons", faculty_buttons))
+    app.add_handler(CommandHandler("faculties_", faculty_buttons))
+    app.add_handler(CommandHandler("in_depth", in_depth_command))
     
+    app.add_handler(CallbackQueryHandler(handle_faculty_buttons))   
     
 
 
@@ -268,6 +211,7 @@ if __name__ == "__main__":
 
     #messages
     app.add_handler(MessageHandler(filters.TEXT, handle_message))
+    
 
 
 
