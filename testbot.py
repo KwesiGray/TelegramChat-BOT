@@ -1,8 +1,5 @@
 from typing import Final
-<<<<<<< HEAD
 import constant as const
-=======
->>>>>>> 7a28ef57321b242c7a1d13073a28f05e96be6083
 from telegram import Bot, Update, InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import Application, CommandHandler, ContextTypes, filters, MessageHandler, CallbackContext, InlineQueryHandler, Updater, CallbackQueryHandler
 from httpx import ConnectTimeout
@@ -47,16 +44,8 @@ async def halls_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(const.halls_command)
 
 
-<<<<<<< HEAD
 async def in_depth_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(const.in_depth_command)
-=======
--Gold Refinery Hall (GRH)
-"""
-    )
-       
-    
->>>>>>> 7a28ef57321b242c7a1d13073a28f05e96be6083
     
 async def faculty_buttons(update: Update, context: CallbackContext):
     """Presents a list of faculty buttons for user selection."""
@@ -210,13 +199,9 @@ if __name__ == "__main__": # Check if the script is being run directly
     app.add_handler(CommandHandler("contact", contact_command))
     app.add_handler(CommandHandler("website", website_command))
     app.add_handler(CommandHandler("halls", halls_command))
-<<<<<<< HEAD
     app.add_handler(CommandHandler("faculties_", faculty_buttons))
     app.add_handler(CommandHandler("in_depth", in_depth_command))
-    
-=======
-    app.add_handler(CommandHandler("faculty_buttons", faculty_buttons))
->>>>>>> 7a28ef57321b242c7a1d13073a28f05e96be6083
+
     app.add_handler(CallbackQueryHandler(handle_faculty_buttons))   
     
 
