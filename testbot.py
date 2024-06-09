@@ -47,30 +47,35 @@ async def halls_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def in_depth_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(const.in_depth_command)
     
+    
+    
+    
 async def faculty_buttons(update: Update, context: CallbackContext):
     """Presents a list of faculty buttons for user selection."""
 
     keyboard =[
-        [InlineKeyboardButton(text="FMMT", callback_data="FMMT Faculty")],
-        [InlineKeyboardButton(text="FOE", callback_data="FOE Faculty")],
-        [InlineKeyboardButton(text="FCAMS", callback_data="FCAMS Faculty")],
-        [InlineKeyboardButton(text="FGES", callback_data="FGES Faculty")],
-        [InlineKeyboardButton(text="SPeTs", callback_data="SPET Faculty")],
-        [InlineKeyboardButton(text="FIMS", callback_data="FIMS Faculty")]
+        [InlineKeyboardButton(text="FMMT", callback_data= const.fmmt)],
+        [InlineKeyboardButton(text="FOE", callback_data=const.foe)],
+        [InlineKeyboardButton(text="FCMS", callback_data=const.fcms)],
+        [InlineKeyboardButton(text="FGES", callback_data=const.fges)],
+        [InlineKeyboardButton(text="SPeTs", callback_data=const.spets)],
+        [InlineKeyboardButton(text="FIMS", callback_data=const.fims)]
     ]
     
     keyboard1 = [
         [InlineKeyboardButton(text="FMMT", callback_data="FMMT Faculty")],
         [InlineKeyboardButton(text="FOE", callback_data="FOE Faculty")],
-        [InlineKeyboardButton(text="FCAMS", callback_data="FCAMS Faculty")],
+        [InlineKeyboardButton(text="FCMS", callback_data="FCAMS Faculty")],
         [InlineKeyboardButton(text="FGES", callback_data="FGES Faculty")],
         [InlineKeyboardButton(text="SPeTs", callback_data="SPET Faculty")],
         [InlineKeyboardButton(text="FIMS", callback_data="FIMS Faculty")]
     ]
 
     markup = InlineKeyboardMarkup(keyboard)
+    markup1 = InlineKeyboardMarkup(keyboard1)
 
     await update.message.reply_text("Select a Faculty:", reply_markup=markup)
+    #await update.message.reply_text("Select a Faculty:", reply_markup=markup1)
     
     
     
@@ -79,11 +84,12 @@ async def faculty_buttons(update: Update, context: CallbackContext):
 async def handle_faculty_buttons(update: Update, context: CallbackContext):
     """Handle the callback data from the faculty buttons."""
     query = update.callback_query
+    #query1 = update.callback_query
     faculty = query.data
 
-    await query.answer(f"You selected: {faculty}")
+    await query.answer(f"{faculty}")
 
-    await query.message.reply_text(f"You selected: {faculty}")
+    await query.message.reply_text(f"-{faculty}")
     
 
 

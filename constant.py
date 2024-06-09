@@ -44,7 +44,7 @@ These Are The Faculties Available :
 
 -> FGES
 
--> FCAMS
+-> FCMS
 
 -> FIMS
     """
@@ -115,3 +115,11 @@ These Are The Halls of Residence Available:
 
 - Gold Refinery Hall (GRH)
 """
+
+
+fmmt="Faculty of Mining and Minerals Technology"
+foe="Faculty of Engineering"
+fcms="Faculty of Computing and Mathematical Sciences"
+fges="Faculty of Geosciences and Environmental Studies"
+spets="School of Petroleum Studies"
+fims="Faculty of Integrated Management Science"
