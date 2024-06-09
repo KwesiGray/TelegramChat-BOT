@@ -1,5 +1,6 @@
 from typing import Final
 import constant as const
+import inLineKeyBoard as line
 from telegram import Bot, Update, InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import Application, CommandHandler, ContextTypes, filters, MessageHandler, CallbackContext, InlineQueryHandler, Updater, CallbackQueryHandler
 from httpx import ConnectTimeout
@@ -50,47 +51,6 @@ async def in_depth_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     
     
-async def faculty_buttons(update: Update, context: CallbackContext):
-    """Presents a list of faculty buttons for user selection."""
-
-    keyboard =[
-        [InlineKeyboardButton(text="FMMT", callback_data= const.fmmt)],
-        [InlineKeyboardButton(text="FOE", callback_data=const.foe)],
-        [InlineKeyboardButton(text="FCMS", callback_data=const.fcms)],
-        [InlineKeyboardButton(text="FGES", callback_data=const.fges)],
-        [InlineKeyboardButton(text="SPeTs", callback_data=const.spets)],
-        [InlineKeyboardButton(text="FIMS", callback_data=const.fims)]
-    ]
-    
-    keyboard1 = [
-        [InlineKeyboardButton(text="FMMT", callback_data="FMMT Faculty")],
-        [InlineKeyboardButton(text="FOE", callback_data="FOE Faculty")],
-        [InlineKeyboardButton(text="FCMS", callback_data="FCAMS Faculty")],
-        [InlineKeyboardButton(text="FGES", callback_data="FGES Faculty")],
-        [InlineKeyboardButton(text="SPeTs", callback_data="SPET Faculty")],
-        [InlineKeyboardButton(text="FIMS", callback_data="FIMS Faculty")]
-    ]
-
-    markup = InlineKeyboardMarkup(keyboard)
-    markup1 = InlineKeyboardMarkup(keyboard1)
-
-    await update.message.reply_text("Select a Faculty:", reply_markup=markup)
-    #await update.message.reply_text("Select a Faculty:", reply_markup=markup1)
-    
-    
-    
-    
-# write a function that will handle the callback data
-async def handle_faculty_buttons(update: Update, context: CallbackContext):
-    """Handle the callback data from the faculty buttons."""
-    query = update.callback_query
-    #query1 = update.callback_query
-    faculty = query.data
-
-    await query.answer(f"{faculty}")
-
-    await query.message.reply_text(f"-{faculty}")
-    
 
 
 # #RESPONSES
@@ -125,8 +85,8 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 
 # Your training data: a list of sentences and a list of responses.
-sentences = ["hi","hello", "how are you", "i am also doing good", "what's your name", "i need some help", "Thank You", "Breslin"]
-responses = ["Hi There!!. Tap the /help Command For Help","Hi There!!. Tap the /help Command For Help.", "I am doing great. How are you doing yourself?", "That's very good to hear. Tap the /help Command for help", "You can call me Breslin Your Bot Assistant. For Help?? Tap /help.", "I am here...Tap the /help command for me to help!", "Anytime!.", "Hello There!...Here for INFO? Tap /help."]
+sentences = const.sentences
+responses = const.responses
 
 #sentences = ["What halls are available", "What courses are available", "What are the faculties", "What are the eligibility criteria", "What is the contact information", "What is the website link"]
 #responses = ["K.T Hall & Chambers Of Mines Hall (CMH) & Gold Refinery Hall (GRH)", "(Computer Science & Engineering) & (Mechanical Engineering) & (Mining Engineering)& (Environmental & Saftey Engineering)", "FOE & FMMT & SPET & FGES", "Agg: 12 - Agg: 08 - Agg: 06", "Hot line: +233 3121 97734"]
@@ -205,10 +165,10 @@ if __name__ == "__main__": # Check if the script is being run directly
     app.add_handler(CommandHandler("contact", contact_command))
     app.add_handler(CommandHandler("website", website_command))
     app.add_handler(CommandHandler("halls", halls_command))
-    app.add_handler(CommandHandler("faculties_", faculty_buttons))
+    app.add_handler(CommandHandler("faculties_", line.faculty_buttons))
     app.add_handler(CommandHandler("in_depth", in_depth_command))
 
-    app.add_handler(CallbackQueryHandler(handle_faculty_buttons))   
+    app.add_handler(CallbackQueryHandler(line.handle_faculty_buttons))   
     
 
 

@@ -118,8 +118,21 @@ These Are The Halls of Residence Available:
 
 
 fmmt="Faculty of Mining and Minerals Technology"
+
 foe="Faculty of Engineering"
 fcms="Faculty of Computing and Mathematical Sciences"
 fges="Faculty of Geosciences and Environmental Studies"
 spets="School of Petroleum Studies"
 fims="Faculty of Integrated Management Science"
+
+
+
+#Programs
+#fmmt programs
+#fmmt1="Mining Engineering"
+
+
+
+
+sentences = ["hi","hello", "how are you", "i am also doing good", "what's your name", "i need some help", "Thank You", "Breslin"]
+responses = ["Hi There!!. Tap the /help Command For Help","Hi There!!. Tap the /help Command For Help.", "I am doing great. How are you doing yourself?", "That's very good to hear. Tap the /help Command for help", "You can call me Breslin Your Bot Assistant. For Help?? Tap /help.", "I am here...Tap the /help command for me to help! Or tap /in_depth for more Info.", "Anytime!.", "Hello There!...Here for INFO? Tap /help Or tap /."]
