@@ -108,17 +108,15 @@ website_command = """ Visit The Official Website of The School Here : https://um
 
 halls_command = """
 These Are The Halls of Residence Available:
+- Chambers Of Mines Hall (CMH)
 
 - K.T Hall (KTH)
-
-- Chambers Of Mines Hall (CMH)
 
 - Gold Refinery Hall (GRH)
 """
 
 
 fmmt="Faculty of Mining and Minerals Technology"
-
 foe="Faculty of Engineering"
 fcms="Faculty of Computing and Mathematical Sciences"
 fges="Faculty of Geosciences and Environmental Studies"
