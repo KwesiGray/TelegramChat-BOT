@@ -32,6 +32,8 @@ These Are The In Depth Commands Available:
 
 /halls_ -> Halls of Residence(Tarkwa)
 
+
+
 """
 
 faculties_command = """
@@ -133,4 +135,10 @@ fims="Faculty of Integrated Management Science"
 
 
 sentences = ["hi","hello", "how are you", "i am also doing good", "what's your name", "i need some help", "Thank You", "Breslin"]
-responses = ["Hi There!!. Tap the /help Command For Help","Hi There!!. Tap the /help Command For Help.", "I am doing great. How are you doing yourself?", "That's very good to hear. Tap the /help Command for help", "You can call me Breslin Your Bot Assistant. For Help?? Tap /help.", "I am here...Tap the /help command for me to help! Or tap /in_depth for more Info.", "Anytime!.", "Hello There!...Here for INFO? Tap /help Or tap /."]
+responses = ["Hi There!!. Tap the /help Command For Help","Hi There!!. Tap the /help Command For Help.", "I am doing great. How are you doing yourself?", "That's very good to hear. Tap the /help Command for help", "You can call me Breslin Your Bot Assistant. For Help?? Tap /help.", "I am here...Tap the /help command for me to help! Or tap /in_depth for more Info.", "Anytime!.", "Hello There!...Here for INFO? Tap /help Or tap /in_depth for more detailed Information."]
+
+
+#for halls_buttons
+cmh = "Chambers of Mines Hall"
+kth = "K.T Hall"
+grh = "Gold Refinery Hall"

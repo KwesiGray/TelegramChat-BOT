@@ -43,11 +43,14 @@ async def website_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def halls_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(const.halls_command)
-
-
+    
+    
+# function for the in_depth command
 async def in_depth_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(const.in_depth_command)
     
+    
+
     
     
     
@@ -158,17 +161,38 @@ if __name__ == "__main__": # Check if the script is being run directly
 
     app.add_handler(CommandHandler("start", start_command))
     app.add_handler(CommandHandler("help", help_command))
-
     app.add_handler(CommandHandler("faculties", faculties_command))
     app.add_handler(CommandHandler("programs", programs_command))
     app.add_handler(CommandHandler("eligibility", eligibility_command))
     app.add_handler(CommandHandler("contact", contact_command))
     app.add_handler(CommandHandler("website", website_command))
     app.add_handler(CommandHandler("halls", halls_command))
-    app.add_handler(CommandHandler("faculties_", line.faculty_buttons))
-    app.add_handler(CommandHandler("in_depth", in_depth_command))
+   
+    
+    
 
-    app.add_handler(CallbackQueryHandler(line.handle_faculty_buttons))   
+    
+    
+    
+    # For The Buttons in (in_depth)command list
+    app.add_handler(CommandHandler("in_depth", in_depth_command)) # how to add a command to the bot after creating the command function
+    
+    
+    # For The Buttons in (faculties)command list
+    app.add_handler(CommandHandler("faculties_", line.faculty_buttons))
+    
+    # To handle the callbacks for the faculty buttons
+    app.add_handler(CallbackQueryHandler(line.handle_faculty_buttons))  
+    
+    
+    # For The Buttons in (Halls)command list
+    app.add_handler(CommandHandler("halls_", line.halls_buttons))
+    app.add_handler(CallbackQueryHandler(line.handle_Halls_buttons))
+    
+    
+    
+    
+    
     
 
 
