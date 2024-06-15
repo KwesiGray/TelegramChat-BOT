@@ -27,19 +27,18 @@ async def faculty_buttons(update: Update, context: CallbackContext):
 async def handle_faculty_buttons(update: Update, context: CallbackContext):
     """Handle the callback data from the faculty buttons."""
     query = update.callback_query
-    #split_data = query.data.split("|")
+    
     
     faculty = query.data
     faculty1 = query.data
     
-    # faculty1 = split_data[0]
-    # faculty2 = faculty1+"\n" + " \nPROGRAMS:\n"+ split_data[1]
+    
     
     
 
     await query.answer(f"{faculty1}") # show the user that the bot is working on their request
 
-    await query.message.reply_text(f"The {faculty}") # send a reply to the user with the faculty they selected
+    await query.message.reply_text(f"{faculty}") # send a reply to the user with the faculty they selected
     
 
 
@@ -72,7 +71,36 @@ async def handle_Halls_buttons(update: Update, context: CallbackContext):
    
 
     await query.answer(f"{Hall}") # show the user that the bot is working on their request
-    await query.message.reply_text(f"The {Hall} Hall") # send a reply to the user with the hall they selected
+    await query.message.reply_text(f"{Hall} Hall") # send a reply to the user with the hall they selected
 
-   
+
+
+
+
+
+# A function for the programs buttons
+
+async def programs_buttons(update: Update, context: CallbackContext):
+    """Presents a list of programs buttons for user selection And to know thier eligible aggregates."""
+
+    keyboard =[
+        [InlineKeyboardButton(text="Mining Engineering", callback_data="Agg:06-12")],
+        [InlineKeyboardButton(text="Geomatic Engineering", callback_data="Agg:10-18")],
+        [InlineKeyboardButton(text="Mineral Engineering", callback_data="Agg:11-18")],
+        [InlineKeyboardButton(text="Petroleum Engineering", callback_data="Agg:06")],
+        [InlineKeyboardButton(text="Geological Engineering", callback_data="Agg:11-14")],
+        [InlineKeyboardButton(text="Environmental & Saftey Engineering", callback_data="Agg:12-18")],
+        [InlineKeyboardButton(text="Mechanical Engineering", callback_data="Agg:08-10")],
+        [InlineKeyboardButton(text="Electrical Engineering", callback_data="Agg:08-10")],
+        [InlineKeyboardButton(text="Materials Engineering", callback_data="Agg:08-10")],
+        [InlineKeyboardButton(text="Computer Science & Engineering", callback_data="Agg:08-10")],
+        [InlineKeyboardButton(text="Mathematics", callback_data="Agg:10-18")],
+        [InlineKeyboardButton(text="Renewable Energy Engineering", callback_data="Agg:09-12")],
+        [InlineKeyboardButton(text="Information Technology", callback_data="Agg:11-14")],
+        [InlineKeyboardButton(text="Petroleum Geoscience Engineering", callback_data="Agg:09")],     
+    ]
     
+    
+    markup = InlineKeyboardMarkup(keyboard)
+    
+    await update.message.reply_text("Select a Program to know Eligible Aggregates:", reply_markup=markup)

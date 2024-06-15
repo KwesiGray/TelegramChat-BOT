@@ -190,6 +190,10 @@ if __name__ == "__main__": # Check if the script is being run directly
     app.add_handler(CallbackQueryHandler(line.handle_Halls_buttons))
     
     
+    # For The Buttons in (programs)command list
+    app.add_handler(CommandHandler("programs_", line.programs_buttons))
+    
+    
     
     
     
