@@ -15,7 +15,7 @@ BOT_USERNAME : Final = '@UMAT_TARKWA_bot'
 
 #Commands
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Hello!! 'Breslin' here Welcome To The UMaT Admissions Assistant Bot. Type the /help Command For any Assistance regarding UMaT Admissions.OR Tap the /in_depth Command for more info")
+    await update.message.reply_text("Hello!! 'Breslin' here Welcome To The UMaT Admissions Assistant Bot. Type the /help Command For any Assistance regarding UMaT Admissions.OR Tap the /in_depth Command for more information")
 
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -179,6 +179,13 @@ if __name__ == "__main__": # Check if the script is being run directly
     
     # For The Buttons in (in_depth)command list
     app.add_handler(CommandHandler("in_depth", in_depth_command)) # how to add a command to the bot after creating the command function
+    
+    
+    
+    # app.add_handler(CommandHandler("info_", line.info_buttons)) # how to add a command to the bot after creating the command function
+    # app.add_handler(CallbackQueryHandler(line.handle_info_buttons)) # how to add a command to the bot after creating the command function
+    
+    
     
     
     # For The Buttons in (faculties)command list

@@ -135,7 +135,7 @@ fims="Faculty of Integrated Management Science"
 
 
 sentences = ["hi","hello", "how are you", "i am also doing good", "what's your name", "i need some help", "Thank You", "Breslin"]
-responses = ["Hi There!!. Tap the /help Command For Help","Hi There!!. Tap the /help Command For Help.", "I am doing great. How are you doing yourself?", "That's very good to hear. Tap the /help Command for help", "You can call me Breslin Your Bot Assistant. For Help?? Tap /help.", "I am here...Tap the /help command for me to help! Or tap /in_depth for more Info.", "Anytime!.", "Hello There!...Here for INFO? Tap /help Or tap /in_depth for more detailed Information."]
+responses = ["Hi There!!. Tap the /help Command For Help","Hi There!!. Tap the /help Command For Help.", "I am doing great. How are you doing yourself?", "That's very good to hear. Tap the /help Command for help", "You can call me Breslin Your Bot Assistant. For Help?? Tap /help.", "I am here...Tap the /help command for me to help! Or tap /in_depth for more Info.", "Oops Please Try the /help command or /in_depth command.", "Hello There!...Here for INFO? Tap /help Or tap /in_depth for more detailed Information."]
 
 
 #for halls_buttons
@@ -149,7 +149,7 @@ grh="Gold Refinery Hall"
 
 #fmmt programs
 fmmt_programs = """
-These Are The Programs Available Under The Faculty of Mining and Minerals Technology:
+These Are The Departments Under The Faculty of Mining and Minerals Technology:
 
 - Mining Engineering
 
@@ -158,22 +158,57 @@ These Are The Programs Available Under The Faculty of Mining and Minerals Techno
 
 #foe programs
 foe_programs = """
-These Are The Programs Available Under The Faculty of Engineering:
+These Are The Departments Under The Faculty of Engineering:
 
-- Electrical Engineering
+- Electrical and Electronics Engineering
 
 - Mechanical Engineering
 
 - Renewable Energy Engineering
 
-- Mathematics
+
 
 """
 
 #fcms programs
 fcms_programs = """
-These Are The Programs Available Under The Faculty of Computing and Mathematical Sciences:
+These Are The Departments Under The Faculty of Computing and Mathematical Sciences:
 
 - Computer Science & Engineering
+
+- Mathematics
+
+"""
+
+#fges programs
+fges_programs = """
+These Are The Departments Under The Faculty of Geosciences and Environmental Studies:
+
+- Geomatic Engineering
+
+- Geological Engineering
+
+- Environmental & Saftey Engineering
+
+"""
+#spets programs
+spets_programs = """
+These Are The Departments Under The School of Petroleum Studies:
+
+- Petroleum Engineering
+
+- Petroleum Geoscience Engineering
+
+- Petroleum Refining Engineering
+
+"""
+
+#fims programs
+fims_programs = """
+These Are The Departments Under the Faculty of Integrated Management Science:
+
+- Department of Technical Communication
+
+- Department of Management Studies
 
 """
