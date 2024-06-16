@@ -10,6 +10,9 @@ bot_token = TOKEN
 bot = Bot(token=bot_token)
 BOT_USERNAME : Final = '@UMAT_TARKWA_bot'
 
+
+
+
 #Commands
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Hello!! 'Breslin' here Welcome To The UMaT Admissions Assistant Bot. Type the /help Command For any Assistance regarding UMaT Admissions.OR Tap the /in_depth Command for more info")
@@ -186,12 +189,14 @@ if __name__ == "__main__": # Check if the script is being run directly
     
     
     # For The Buttons in (Halls)command list
-    app.add_handler(CommandHandler("halls_", line.halls_buttons))
-    app.add_handler(CallbackQueryHandler(line.handle_Halls_buttons))
+    # app.add_handler(CommandHandler("halls_", line.halls_buttons))
+    # app.add_handler(CallbackQueryHandler(line.handle_Halls_buttons))
     
     
-    # For The Buttons in (programs)command list
-    app.add_handler(CommandHandler("programs_", line.programs_buttons))
+    # # For The Buttons in (programs)command list
+    # app.add_handler(CommandHandler("programs_", line.programs_buttons))
+    # app.add_handler(CallbackQueryHandler(line.handle_programs_buttons))
+    
     
     
     

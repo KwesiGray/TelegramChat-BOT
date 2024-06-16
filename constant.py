@@ -139,6 +139,41 @@ responses = ["Hi There!!. Tap the /help Command For Help","Hi There!!. Tap the /
 
 
 #for halls_buttons
-cmh = "Chambers of Mines Hall"
-kth = "K.T Hall"
-grh = "Gold Refinery Hall"
+cmh="Chambers of Mines Hall"
+kth="K.T Hall"
+grh="Gold Refinery Hall"
+
+
+
+# Programs under the following faculties
+
+#fmmt programs
+fmmt_programs = """
+These Are The Programs Available Under The Faculty of Mining and Minerals Technology:
+
+- Mining Engineering
+
+- Minerals Engineering
+"""
+
+#foe programs
+foe_programs = """
+These Are The Programs Available Under The Faculty of Engineering:
+
+- Electrical Engineering
+
+- Mechanical Engineering
+
+- Renewable Energy Engineering
+
+- Mathematics
+
+"""
+
+#fcms programs
+fcms_programs = """
+These Are The Programs Available Under The Faculty of Computing and Mathematical Sciences:
+
+- Computer Science & Engineering
+
+"""
