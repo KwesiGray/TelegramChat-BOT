@@ -1,6 +1,7 @@
 from typing import Final
 import constant as const
 import inLineKeyBoard as line
+import inLinePROgrams as prog
 from telegram import Bot, Update, InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import Application, CommandHandler, ContextTypes, filters, MessageHandler, CallbackContext, InlineQueryHandler, Updater, CallbackQueryHandler
 from httpx import ConnectTimeout
@@ -15,7 +16,7 @@ BOT_USERNAME : Final = '@UMAT_TARKWA_bot'
 
 #Commands
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Hello!! 'Breslin' here Welcome To The UMaT Admissions Assistant Bot. Type the /help Command For any Assistance regarding UMaT Admissions.OR Tap the /in_depth Command for more information")
+    await update.message.reply_text("Hello!! 'Breslin' here Welcome To The UMaT Admissions Assistant Bot. Type the /help Command For any Assistance regarding UMaT Admissions.OR Tap the /in_depth Command for more information\n Tap the /about command to know about the Mission , Vision & Core Values guiding UMaT.")
 
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -51,7 +52,17 @@ async def halls_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # function for the in_depth command
 async def in_depth_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(const.in_depth_command)
-    
+
+
+async def mission_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(const.Mission)
+
+
+async def vision_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(const.Vision)
+
+async def core_values_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(const.Core_Values)
     
 
     
@@ -170,6 +181,9 @@ if __name__ == "__main__": # Check if the script is being run directly
     app.add_handler(CommandHandler("contact", contact_command))
     app.add_handler(CommandHandler("website", website_command))
     app.add_handler(CommandHandler("halls", halls_command))
+    app.add_handler(CommandHandler("mission", mission_command))
+    app.add_handler(CommandHandler("vision", vision_command))
+    app.add_handler(CommandHandler("core_values", core_values_command))
    
     
     
@@ -182,8 +196,7 @@ if __name__ == "__main__": # Check if the script is being run directly
     
     
     
-    # app.add_handler(CommandHandler("info_", line.info_buttons)) # how to add a command to the bot after creating the command function
-    # app.add_handler(CallbackQueryHandler(line.handle_info_buttons)) # how to add a command to the bot after creating the command function
+   
     
     
     
@@ -200,9 +213,15 @@ if __name__ == "__main__": # Check if the script is being run directly
     # app.add_handler(CallbackQueryHandler(line.handle_Halls_buttons))
     
     
-    # # For The Buttons in (programs)command list
-    # app.add_handler(CommandHandler("programs_", line.programs_buttons))
-    # app.add_handler(CallbackQueryHandler(line.handle_programs_buttons))
+    # For The Buttons in (programs)command list
+    app.add_handler(CommandHandler("programs_", prog.programs_buttons))
+    #app.add_handler(CallbackQueryHandler(line.handle_programs_buttons))
+    
+    
+    # FOR THE ABOUT SECTION 
+    app.add_handler(CommandHandler("about", line.about_buttons))
+    
+    app.add_handler(CallbackQueryHandler(line.handle_about_buttons))
     
     
     
