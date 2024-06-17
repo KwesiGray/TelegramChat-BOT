@@ -52,30 +52,3 @@ async def handle_faculty_buttons(update: Update, context: ContextTypes.DEFAULT_T
 
 
 
-async def about_buttons(update: Update, context: CallbackContext):
-    keyboard = [
-        [InlineKeyboardButton(text="Mission", callback_data="/Mission")],
-        [InlineKeyboardButton(text="Vision", callback_data="/Vision")],
-        [InlineKeyboardButton(text="Core Values", callback_data="/Core_Values")]
-    ]
-    reply_markup = InlineKeyboardMarkup(keyboard)
-    await context.bot.send_message(chat_id=update.effective_chat.id, text='Select an Option to know more about UMaT:', reply_markup=reply_markup)
-     
-
-
-
-async def handle_about_buttons(update: Update, context: CallbackContext):
-    query = update.callback_query
-    callback_data = query.data
-    await query.answer()
-    await query.message.reply_text("{}".format(callback_data))
-    
-
-    if callback_data == "/Mission":
-        await query.message.reply_text(const.Mission)
-    elif callback_data == "/Vision":
-        await query.message.reply_text(const.Vision)
-    elif callback_data == "/Core_Values":
-        await query.message.reply_text(const.Core_Values)
-
-  

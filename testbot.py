@@ -2,9 +2,11 @@ from typing import Final
 import constant as const
 import inLineKeyBoard as line
 import inLinePROgrams as prog
+import aboutInLine as about
 from telegram import Bot, Update, InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import Application, CommandHandler, ContextTypes, filters, MessageHandler, CallbackContext, InlineQueryHandler, Updater, CallbackQueryHandler
 from httpx import ConnectTimeout
+
 
 TOKEN: Final = '7170598307:AAGXai5Vl8qVlCef1HtvbSeJsP7lL1xL8aY'
 bot_token = TOKEN
@@ -219,9 +221,9 @@ if __name__ == "__main__": # Check if the script is being run directly
     
     
     # FOR THE ABOUT SECTION 
-    app.add_handler(CommandHandler("about", line.about_buttons))
+    app.add_handler(CommandHandler("about", about.About_buttons))
     
-    app.add_handler(CallbackQueryHandler(line.handle_about_buttons))
+    #app.add_handler(CallbackQueryHandler(line.handle_about_buttons))
     
     
     

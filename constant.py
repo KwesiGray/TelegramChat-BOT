@@ -145,6 +145,15 @@ grh="Gold Refinery Hall"
 
 # Programs under the following faculties
 
+
+fmmt="Faculty of Mining and Minerals Technology(FMMT)"
+foe="Faculty of Engineering(FOE)"
+fcms="Faculty of Computing and Mathematical Sciences(FCMS)"
+fges="Faculty of Geosciences and Environmental Studies(FGES)"
+spets="School of Petroleum Studies(SPeTs)"
+fims="Faculty of Integrated Management Science(FIMS)"
+
+
 #fmmt programs
 fmmt_programs = """
 These Are The Departments Under The Faculty of Mining and Minerals Technology:
@@ -212,14 +221,7 @@ These Are The Departments Under the Faculty of Integrated Management Science:
 """
 
 
-# for the info buttons
 
-fmmt1="Faculty of Mining and Minerals Technology"
-foe1="Faculty of Engineering"
-fcms1="Faculty of Computing and Mathematical Sciences"
-fges1="Faculty of Geosciences and Environmental Studies"
-spets1="School of Petroleum Studies"
-fims1="Faculty of Integrated Management Science"
 
 
 # The buttons for Information on the faculties
@@ -230,18 +232,29 @@ Faculty of Mining and Minerals Technology:
 
 
 # Mission and Vision Statements
+Mission = "Mission Statement:"
 
-Mission = """
+Mission_St= """
 Mission Statement:
-The mission is to provide higher education in mining, petroleum, technology and related disciplines through effective teaching and learning; to promote knowledge through active research and dissemination of information and to offer professional services through extension activities to the mining and allied industries.
-"""  
-
-Vision = """
-Vision Statement:
-The vision of the University is to be a Centre of Excellence in Ghana and Africa for producing world-class professionals in the fields of mining, petroleum, technology and related disciplines.
+The mission is to provide higher education in mining, petroleum, technology and related disciplines through effective teaching and learning; to promote knowledge through active research and dissemination of information and to offer professional services through extension activities to the mining and allied industries
 """
 
 
-Core_Values = """
-Core Values: 
-The core values of the University are Knowledge, Truth and Excellence."""
+Vision= "Vision Statement:"
+
+Vision_St = """
+Vision Statement:
+The vision of the University is to be a Centre of Excellence in Ghana and Africa for producing world-class professionals in the fields of mining, petroleum, technology and related disciplines."
+"""
+
+
+
+
+
+CoreValues = "Core Values:"
+
+Core_Values_St = """
+Core Values: The core values of the University are Knowledge, Truth and Excellence.
+"""
+ 
+
