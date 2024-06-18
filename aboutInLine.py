@@ -1,20 +1,35 @@
-from telegram import Bot, Update, InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, InlineQueryResultArticle, InputTextMessageContent
 from telegram.ext import Application, CommandHandler, ContextTypes, filters, MessageHandler, CallbackContext, InlineQueryHandler, Updater, CallbackQueryHandler
-import constant as const
 
+# Assuming constant.py exists with the defined constants
+from constant import mission, vision, coreValues, mission_St, vision_St, coreValues_St
 
+# Assuming the following functions are defined in your code
 
 async def About_buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
-        [InlineKeyboardButton(text="Mission", callback_data=const.Mission)],
-        [InlineKeyboardButton(text="Vision", callback_data=const.Vision)],
-        [InlineKeyboardButton(text="Core Values", callback_data=const.CoreValues)]
+        [InlineKeyboardButton("mission", callback_data=mission)],  # Use constants directly
+        [InlineKeyboardButton("vision", callback_data=vision)],
+        [InlineKeyboardButton("Core Values", callback_data=coreValues)],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.message.reply_text('Select an Option to know more about UMaT:', reply_markup=reply_markup)
-    
-    query = update.callback_query
-    callback_data = query.data
-    
-    if callback_data == const.Mission:
-        await query.message.reply_text(const.Mission_St)
+
+async def handle_About_buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    try:
+        query = update.callback_query
+        callback_data = query.data
+        await query.answer()
+
+        if callback_data == mission:
+            await query.message.reply_text(mission_St)
+        elif callback_data == vision:
+            await query.message.reply_text(vision_St)
+        elif callback_data == coreValues:
+            await query.message.reply_text(coreValues_St)
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        # Handle the error gracefully (e.g., send an error message to the user)
+
+# ... rest of your Telegram bot code (including token initialization)

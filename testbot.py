@@ -4,7 +4,7 @@ import inLineKeyBoard as line
 import inLinePROgrams as prog
 import aboutInLine as about
 from telegram import Bot, Update, InlineKeyboardButton, InlineKeyboardMarkup, Update
-from telegram.ext import Application, CommandHandler, ContextTypes, filters, MessageHandler, CallbackContext, InlineQueryHandler, Updater, CallbackQueryHandler
+from telegram.ext import Application, CommandHandler, ContextTypes, filters, MessageHandler, CallbackContext, InlineQueryHandler, Updater, CallbackQueryHandler, Updater
 from httpx import ConnectTimeout
 
 
@@ -18,7 +18,7 @@ BOT_USERNAME : Final = '@UMAT_TARKWA_bot'
 
 #Commands
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Hello!! 'Breslin' here Welcome To The UMaT Admissions Assistant Bot. Type the /help Command For any Assistance regarding UMaT Admissions.OR Tap the /in_depth Command for more information\n Tap the /about command to know about the Mission , Vision & Core Values guiding UMaT.")
+    await update.message.reply_text("Hello!! 'Breslin' here. Welcome To The UMaT Admissions Assistant Bot. Tap on the Menu on the bottom left corner to have full access.")
 
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -164,17 +164,31 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
     print(f"Update: {update} caused this error {context.error}")
-    
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 if __name__ == "__main__": # Check if the script is being run directly
+    
     print ("Starting ChatBot.....")
     # Create the Application and pass it your bot's token.
     app = Application.builder().token(TOKEN).build()
+    app.add_handler(CallbackQueryHandler(about.handle_About_buttons))
+    app.add_handler(CallbackQueryHandler(line.handle_faculty_buttons))  
+    
 
-
+    
+    # Add the handlers to the bot
     app.add_handler(CommandHandler("start", start_command))
     app.add_handler(CommandHandler("help", help_command))
     app.add_handler(CommandHandler("faculties", faculties_command))
@@ -186,16 +200,16 @@ if __name__ == "__main__": # Check if the script is being run directly
     app.add_handler(CommandHandler("mission", mission_command))
     app.add_handler(CommandHandler("vision", vision_command))
     app.add_handler(CommandHandler("core_values", core_values_command))
-   
-    
+    app.add_handler(CommandHandler("in_depth", in_depth_command)) # how to add a command to the bot after creating the command function
+    app.add_handler(CommandHandler("faculties_", line.faculty_buttons))
+    app.add_handler(CommandHandler("programs_", prog.programs_buttons))
+    app.add_handler(CommandHandler("about", about.About_buttons))
     
 
     
     
     
-    # For The Buttons in (in_depth)command list
-    app.add_handler(CommandHandler("in_depth", in_depth_command)) # how to add a command to the bot after creating the command function
-    
+   
     
     
    
@@ -203,29 +217,13 @@ if __name__ == "__main__": # Check if the script is being run directly
     
     
     
-    # For The Buttons in (faculties)command list
-    app.add_handler(CommandHandler("faculties_", line.faculty_buttons))
     
-    # To handle the callbacks for the faculty buttons
-    app.add_handler(CallbackQueryHandler(line.handle_faculty_buttons))  
+   
     
     
-    # For The Buttons in (Halls)command list
-    # app.add_handler(CommandHandler("halls_", line.halls_buttons))
-    # app.add_handler(CallbackQueryHandler(line.handle_Halls_buttons))
+    #Inline Keyboards
     
-    
-    # For The Buttons in (programs)command list
-    app.add_handler(CommandHandler("programs_", prog.programs_buttons))
-    #app.add_handler(CallbackQueryHandler(line.handle_programs_buttons))
-    
-    
-    # FOR THE ABOUT SECTION 
-    app.add_handler(CommandHandler("about", about.About_buttons))
-    
-    #app.add_handler(CallbackQueryHandler(line.handle_about_buttons))
-    
-    
+   
     
     
     
@@ -249,7 +247,7 @@ if __name__ == "__main__": # Check if the script is being run directly
 
     #Polls the bot
     print("Polling.....")
-    app.run_polling(poll_interval =3)
+    app.run_polling(poll_interval =1)
     
 
 

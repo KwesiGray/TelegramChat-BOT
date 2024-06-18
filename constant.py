@@ -231,30 +231,34 @@ Faculty of Mining and Minerals Technology:
 """
 
 
-# Mission and Vision Statements
-Mission = "Mission Statement:"
+# # Mission and Vision Statements
+# mission="Mission Statement"
+# vision="Vision Statement"
+# coreValues="Core Values"
 
-Mission_St= """
+
+
+mission_St= """
 Mission Statement:
 The mission is to provide higher education in mining, petroleum, technology and related disciplines through effective teaching and learning; to promote knowledge through active research and dissemination of information and to offer professional services through extension activities to the mining and allied industries
 """
-
-
-Vision= "Vision Statement:"
-
-Vision_St = """
+vision_St = """
 Vision Statement:
-The vision of the University is to be a Centre of Excellence in Ghana and Africa for producing world-class professionals in the fields of mining, petroleum, technology and related disciplines."
-"""
+The vision of the University is to be a Centre of Excellence in Ghana and Africa for producing world-class professionals in the fields of mining, petroleum, technology and related disciplines." """
 
-
-
-
-
-CoreValues = "Core Values:"
-
-Core_Values_St = """
-Core Values: The core values of the University are Knowledge, Truth and Excellence.
-"""
+coreValues_St = """
+Core Values: The core values of the University are Knowledge, Truth and Excellence """
  
 
+# The buttons for the Mission and Vision Statements
+mission = """
+mission_text
+"""
+
+vision = """
+vision_text
+"""
+
+coreValues = """
+core_values_text
+"""
