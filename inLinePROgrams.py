@@ -1,24 +1,64 @@
-from telegram import Bot, Update, InlineKeyboardButton, InlineKeyboardMarkup, Update
-from telegram.ext import Application, CommandHandler, ContextTypes, filters, MessageHandler, CallbackContext, InlineQueryHandler, Updater, CallbackQueryHandler
-import constant as const
+from telegram import Bot, Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import CommandHandler, CallbackContext, Updater, CallbackQueryHandler
 
+programs = [
+    "Mining Engineering",
+    "Geomatic Engineering",
+    "Mineral Engineering",
+    "Petroleum Engineering",
+    "Electrical & Electronics Engineering",
+    "Logistics Engineering",
+    "CyberSecurity", 
+    "Geological Engineering",
+    "Environmental & Saftey Engineering",
+    "Mechanical Engineering",
+    "Materials Engineering",
+    "Computer Science & Engineering",
+    "Mathematics",
+    "Renewable Energy Engineering",
+    "Information Technology",
+    "Petroleum Geoscience Engineering",
+]
 
-async def programs_buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    keyboard =[
-        [InlineKeyboardButton(text="Mining Engineering", callback_data="Agg:06-12")],
-        [InlineKeyboardButton(text="Geomatic Engineering", callback_data="Agg:10-18")],
-        [InlineKeyboardButton(text="Mineral Engineering", callback_data="Agg:11-18")],
-        [InlineKeyboardButton(text="Petroleum Engineering", callback_data="Agg:06")],
-        [InlineKeyboardButton(text="Geological Engineering", callback_data="Agg:11-14")],
-        [InlineKeyboardButton(text="Environmental & Saftey Engineering", callback_data="Agg:12-18")],
-        [InlineKeyboardButton(text="Mechanical Engineering", callback_data="Agg:08-10")],
-        [InlineKeyboardButton(text="Electrical Engineering", callback_data="Agg:08-10")],
-        [InlineKeyboardButton(text="Materials Engineering", callback_data="Agg:08-10")],
-        [InlineKeyboardButton(text="Computer Science & Engineering", callback_data="Agg:08-10")],
-        [InlineKeyboardButton(text="Mathematics", callback_data="Agg:10-18")],
-        [InlineKeyboardButton(text="Renewable Energy Engineering", callback_data="Agg:09-12")],
-        [InlineKeyboardButton(text="Information Technology", callback_data="Agg:11-14")],
-        [InlineKeyboardButton(text="Petroleum Geoscience Engineering", callback_data="Agg:09")],     
-    ]
+aggregates = [
+    "08-12",
+    "11-18",
+    "11-16",
+    "06",
+    "08-10",
+    "11-14",
+    "12-18",
+    "10-12",
+    "08-10",
+    "08-10",
+    "08-10",
+    "08-10",
+    "10-18",
+    "09-12",
+    "11-14",
+    "09-11",
+]
+
+# Combine programs and aggregates into a list of tuples
+programs_with_aggregates = list(zip(programs, aggregates))
+
+async def programs_buttons(update: Update, context: CallbackContext) -> None:
+    keyboard = []
+    for program, aggregate in programs_with_aggregates:
+        callback_data = f"Agg:{aggregate}"
+        keyboard.append([InlineKeyboardButton(text=program, callback_data=callback_data)])
+
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.message.reply_text('Select a Program to know Eligible Aggregates:', reply_markup=reply_markup)
+
+async def handle_program_button(update: Update, context: CallbackContext):
+    query = update.callback_query
+    await query.answer()
+
+    # Extract the aggregate from the callback data
+    _, aggregate = query.data.split(":")
+    
+    # Send the aggregate as a reply
+    await query.message.reply_text(f'The allowed aggregate is: {aggregate}')
+
+# Assuming you have an Updater instance named updater

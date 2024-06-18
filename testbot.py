@@ -1,10 +1,11 @@
 from typing import Final
 import constant as const
+import logging
 import inLineKeyBoard as line
 import inLinePROgrams as prog
 import aboutInLine as about
 from telegram import Bot, Update, InlineKeyboardButton, InlineKeyboardMarkup, Update
-from telegram.ext import Application, CommandHandler, ContextTypes, filters, MessageHandler, CallbackContext, InlineQueryHandler, Updater, CallbackQueryHandler, Updater
+from telegram.ext import Application, CommandHandler, ContextTypes, filters, MessageHandler, CallbackContext, InlineQueryHandler, Updater, CallbackQueryHandler, Updater, ConversationHandler
 from httpx import ConnectTimeout
 
 
@@ -13,6 +14,18 @@ bot_token = TOKEN
 bot = Bot(token=bot_token)
 BOT_USERNAME : Final = '@UMAT_TARKWA_bot'
 
+
+
+# Enable logging
+logging.basicConfig(
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
+)
+
+
+# set higher logging level for httpx to avoid all GET and POST requests being logged
+logging.getLogger("httpx").setLevel(logging.WARNING)
+
+logger = logging.getLogger(__name__)
 
 
 
@@ -183,8 +196,7 @@ if __name__ == "__main__": # Check if the script is being run directly
     print ("Starting ChatBot.....")
     # Create the Application and pass it your bot's token.
     app = Application.builder().token(TOKEN).build()
-    app.add_handler(CallbackQueryHandler(about.handle_About_buttons))
-    app.add_handler(CallbackQueryHandler(line.handle_faculty_buttons))  
+    
     
 
     
@@ -200,13 +212,17 @@ if __name__ == "__main__": # Check if the script is being run directly
     app.add_handler(CommandHandler("mission", mission_command))
     app.add_handler(CommandHandler("vision", vision_command))
     app.add_handler(CommandHandler("core_values", core_values_command))
+    
+    
     app.add_handler(CommandHandler("in_depth", in_depth_command)) # how to add a command to the bot after creating the command function
     app.add_handler(CommandHandler("faculties_", line.faculty_buttons))
     app.add_handler(CommandHandler("programs_", prog.programs_buttons))
+    
     app.add_handler(CommandHandler("about", about.About_buttons))
     
-
-    
+    app.add_handler(CallbackQueryHandler(prog.handle_program_button))
+    # app.add_handler(CallbackQueryHandler(about.handle_About_buttons))
+    # app.add_handler(CallbackQueryHandler(line.handle_faculty_buttons))
     
     
    
