@@ -1,16 +1,17 @@
-from typing import Final
-import constant as const
+import os
 import logging
+import constant as const
 import inLineKeyBoard as line
 import inLinePROgrams as prog
-import aboutInLine as about
+from typing import Final
 from telegram import Bot, Update, InlineKeyboardButton, InlineKeyboardMarkup, Update
-from telegram.ext import Application, CommandHandler, ContextTypes, filters, MessageHandler, CallbackContext, InlineQueryHandler, Updater, CallbackQueryHandler, Updater, ConversationHandler
+from telegram.ext import Application, CommandHandler, ContextTypes, filters, MessageHandler, CallbackContext, InlineQueryHandler, Updater, CallbackQueryHandler, ConversationHandler
 from httpx import ConnectTimeout
+from dotenv import load_dotenv, dotenv_values
 
+load_dotenv()
 
-TOKEN: Final = '7170598307:AAGXai5Vl8qVlCef1HtvbSeJsP7lL1xL8aY'
-bot_token = TOKEN
+bot_token = os.getenv("Bot_Token")
 bot = Bot(token=bot_token)
 BOT_USERNAME : Final = '@UMAT_TARKWA_bot'
 
@@ -20,19 +21,68 @@ BOT_USERNAME : Final = '@UMAT_TARKWA_bot'
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
 )
-
-
 # set higher logging level for httpx to avoid all GET and POST requests being logged
 logging.getLogger("httpx").setLevel(logging.WARNING)
 
 logger = logging.getLogger(__name__)
 
+# Stages
+START_ROUTES, END_ROUTES = range(2)
+# Callback data
+ONE, TWO, THREE, FOUR = range(4)
+
+
+
 
 
 #Commands
-async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Hello!! 'Breslin' here. Welcome To The UMaT Admissions Assistant Bot. Tap on the Menu on the bottom left corner to have full access.")
-
+async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE)-> str:
+    """Send message on `/start`."""
+    # Get user that sent /start and log his name
+    user = update.message.from_user
+    logger.info("User %s started the conversation.", user.first_name)
+    # Build InlineKeyboard where each button has a displayed text
+    # and a string as callback_data
+    # The keyboard is a list of button rows, where each row is in turn
+    # a list (hence `[[...]]`).k
+    
+            
+    keyboard = [
+        [
+            InlineKeyboardButton("Fresher", callback_data="/start"),
+            InlineKeyboardButton("Non-Fresher", callback_data="Quit"),
+        ]
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    # Send message with text and appended InlineKeyboard  
+    
+    await update.message.reply_text("Hello!! 'Breslin' here Welcome. To The UMaT Admissions Assistant Bot. I am here to help you with all your admission queries. Please Choose a Route to get started", reply_markup=reply_markup)
+    
+  
+    
+    #await update.message.reply_text("Start handler, Choose a route", reply_markup=reply_markup)
+    # Tell ConversationHandler that we're in state `FIRST` now
+    return START_ROUTES
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(const.help_command)
@@ -62,8 +112,8 @@ async def website_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def halls_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(const.halls_command)
-    
-    
+
+
 # function for the in_depth command
 async def in_depth_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(const.in_depth_command)
@@ -78,11 +128,11 @@ async def vision_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def core_values_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(const.Core_Values)
-    
 
-    
-    
-    
+
+
+
+
 
 
 # #RESPONSES
@@ -145,13 +195,13 @@ def handle_respon(text: str) -> str:
 
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    message_type: str = update.message.chat.type # Get the type of the chat from the update 
+    message_type: str = update.message.chat.type # Get the type of the chat from the update
     text: str = update.message.text # Get the text message from the update
     response: str = ""  # Initialize response
 
     print(f'User: ({update.message.chat.id}) in {message_type}: "{text}"')
 
-     
+
     if not text: # Check if the text is None or an empty string
         print("Received a message without text") # Print a message indicating that a message without text was received
         return # Return None
@@ -182,25 +232,12 @@ async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 
-
-
-
-
-
-
-
-
-
 if __name__ == "__main__": # Check if the script is being run directly
-    
     print ("Starting ChatBot.....")
     # Create the Application and pass it your bot's token.
-    app = Application.builder().token(TOKEN).build()
-    
-    
+    app = Application.builder().token(bot_token).build()
 
-    
-    # Add the handlers to the bot
+
     app.add_handler(CommandHandler("start", start_command))
     app.add_handler(CommandHandler("help", help_command))
     app.add_handler(CommandHandler("faculties", faculties_command))
@@ -212,39 +249,51 @@ if __name__ == "__main__": # Check if the script is being run directly
     app.add_handler(CommandHandler("mission", mission_command))
     app.add_handler(CommandHandler("vision", vision_command))
     app.add_handler(CommandHandler("core_values", core_values_command))
-    
-    
+
+
+
+
+
+
+
+    # For The Buttons in (in_depth)command list
     app.add_handler(CommandHandler("in_depth", in_depth_command)) # how to add a command to the bot after creating the command function
+
+
+
+
+
+
+
+
+    # For The Buttons in (faculties)command list
     app.add_handler(CommandHandler("faculties_", line.faculty_buttons))
+
+    # To handle the callbacks for the faculty buttons
+    app.add_handler(CallbackQueryHandler(line.handle_faculty_buttons))
+
+
+    # For The Buttons in (Halls)command list
+    # app.add_handler(CommandHandler("halls_", line.halls_buttons))
+    # app.add_handler(CallbackQueryHandler(line.handle_Halls_buttons))
+
+
+    # For The Buttons in (programs)command list
     app.add_handler(CommandHandler("programs_", prog.programs_buttons))
-    
-    app.add_handler(CommandHandler("about", about.About_buttons))
-    
-    app.add_handler(CallbackQueryHandler(prog.handle_program_button))
-    # app.add_handler(CallbackQueryHandler(about.handle_About_buttons))
-    # app.add_handler(CallbackQueryHandler(line.handle_faculty_buttons))
-    
-    
-   
-    
-    
-   
-    
-    
-    
-    
-    
-   
-    
-    
-    #Inline Keyboards
-    
-   
-    
-    
-    
-    
-    
+    #app.add_handler(CallbackQueryHandler(line.handle_programs_buttons))
+
+
+    # FOR THE ABOUT SECTION
+    app.add_handler(CommandHandler("about", line.about_buttons))
+
+    app.add_handler(CallbackQueryHandler(line.handle_about_buttons))
+
+
+
+
+
+
+
 
 
 
@@ -252,7 +301,7 @@ if __name__ == "__main__": # Check if the script is being run directly
 
     #messages
     app.add_handler(MessageHandler(filters.TEXT, handle_message))
-    
+
 
 
 
@@ -263,8 +312,8 @@ if __name__ == "__main__": # Check if the script is being run directly
 
     #Polls the bot
     print("Polling.....")
-    app.run_polling(poll_interval =1)
-    
+    app.run_polling(poll_interval =3)
+
 
 
 
