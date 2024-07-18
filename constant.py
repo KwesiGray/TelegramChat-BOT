@@ -1,7 +1,7 @@
 # for the help command 
 
 
-fresher = "To have full access of this Assistant Bot Tap on the Menu on the left bottom corner of your screen."
+fresher = "Tap on the'MENU'on the left bottom corner of your screen."
 
 help_command = """
 /start - Start Using the Telegram Bot
